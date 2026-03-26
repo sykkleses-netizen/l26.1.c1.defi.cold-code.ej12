@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empresa - HTML Plano</title>
+</head>
+<body>
+
+  <section id="body">
+    <h2>Gestión de Empresa (HTML Plano)</h2>
+    <button id="body_btNuevoEmpleado">Nuevo Empleado</button>
+    <hr>
+    <div>
+      Porcentaje de Mujeres: <span id="body_lblPorcenMujeres">0</span>%
+    </div>
+    <div>
+      Porcentaje de Hombres: <span id="body_lblPorcenHombres">0</span>%
+    </div>
+    <div>
+      Total de Hombres: <span id="body_lblTotalHombres">0</span>
+    </div>
+  </section>
+
+  <section id="empleado" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
+    <h5 id="empleado_lblEmpleado">Procesar Empleado</h5>
+    <label>Nombre:
+      <input type="text" id="empleado_inNombre" placeholder="Ej: Juan">
+    </label>
+    <br>
+    <label>Sexo (F/M):
+      <input type="text" id="empleado_inSexo" placeholder="Ej: M">
+    </label>
+    <br><br>
+    <button id="empleado_btCancelar">Cancelar</button>
+    <button id="empleado_btAceptar">Aceptar</button>
+  </section>
+
+  <script type="module">
+    import Cl_cEmpresa from "./dist/controllers/Cl_cEmpresa.js";
+    import Cl_cEmpleado from "./dist/controllers/Cl_cEmpleado.js";
+    
+    // Importamos SOLO las vistas planas
+    import Cl_vEmpresaPlain from "./dist/views/Cl_vEmpresaPlain.js";
+    import Cl_vEmpleadoPlain from "./dist/views/Cl_vEmpleadoPlain.js";
+
+    // 1. Instanciamos las vistas
+    const vistaEmpresa = new Cl_vEmpresaPlain();
+    const vistaEmpleado = new Cl_vEmpleadoPlain();
+
+    // 2. Inyectamos las vistas en los controladores (¡La magia ocurre aquí!)
+    const controladorEmpleado = new Cl_cEmpleado(vistaEmpleado);
+    new Cl_cEmpresa(vistaEmpresa, controladorEmpleado);
+  </script>
+</body>
+</html>
